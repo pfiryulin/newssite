@@ -1,3 +1,3 @@
-.idea/
-vendor/
-templates_c/
+/.idea
+/vendor
+/templates_c
