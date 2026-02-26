@@ -23,4 +23,5 @@ $smarty->setCacheDir(__DIR__ . '/cache/');
 $smarty->setConfigDir(__DIR__ . '/configs/');
 
 Router::dispatch($smarty);
+echo "Helo world";
 

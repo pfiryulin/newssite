@@ -1,0 +1,51 @@
+services:
+  abelohost:
+    build: .
+    image: abelohost
+    container_name: abelo
+    networks:
+      - abelohost
+    ports:
+      - "8000:80"
+    links:
+      - mysql:db
+    depends_on:
+      - mysql
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.0
+    container_name: db_container
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: abelohost
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./db:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
+    networks:
+      - abelohost
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - "8081:80"
+    links:
+      - mysql:db
+    networks:
+      - abelohost
+    depends_on:
+      - mysql
+
+networks:
+  abelohost:
+    driver: bridge
+
+volumes:
+  db-data:
