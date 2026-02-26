@@ -8,6 +8,14 @@ use Smarty\Smarty;
 
 class Router
 {
+    /**
+     * Website routing
+     *
+     * @param \Smarty\Smarty $smarty
+     *
+     * @throws \Smarty\Exception
+     * @return void
+     */
     public static function dispatch(Smarty $smarty)
     {
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);

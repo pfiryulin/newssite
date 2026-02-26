@@ -6,6 +6,11 @@ class DatabaseConnect
 {
     public static ?\PDO $instance  = null;
 
+    /**
+     * Establishing a connection to the database
+     *
+     * @return \PDO
+     */
     public static function getInstance(): \PDO
     {
         if(!self::$instance)

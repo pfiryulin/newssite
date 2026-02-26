@@ -8,6 +8,13 @@ use Smarty\Smarty;
 
 class CategoryController
 {
+    /**
+     * @param \Smarty\Smarty $smarty
+     * @param int            $id
+     *
+     * @throws \Smarty\Exception
+     * @return null
+     */
     public function index(Smarty $smarty, int $id)
     {
         $currenPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;

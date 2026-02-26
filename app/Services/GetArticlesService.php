@@ -8,6 +8,14 @@ use core\Database\DatabaseConnect;
 
 class GetArticlesService
 {
+    /**
+     * The method prepares the data for display on the main page
+     *
+     * @param int $limit
+     *
+     * @throws \Exception
+     * @return array
+     */
     public function getArticlesForIndex(int $limit=3) : array
     {
         $categories = Category::findAll();
@@ -32,6 +40,15 @@ class GetArticlesService
         return $articles;
     }
 
+    /**
+     * The method prepares the data for display on the category page
+     *
+     * @param int $category_id
+     * @param     $limit
+     * @param     $offset
+     *
+     * @return array
+     */
     public function getArticleByCategory(int $category_id, $limit, $offset = 0) : array
     {
         $db = DatabaseConnect::getInstance();
@@ -41,7 +58,15 @@ class GetArticlesService
         return $articles->fetchAll();
     }
 
-    public function getCountArticles($column, $value) : int
+    /**
+     * The method counts the number of records in the selection
+     *
+     * @param string              $column
+     * @param \app\Services\mixed $value
+     *
+     * @return int
+     */
+    public function getCountArticles(string $column, mixed $value) : int
     {
         $db = DatabaseConnect::getInstance();
         $data = $db->prepare("SELECT COUNT(*) FROM " . Articles::$table . " WHERE $column = ?");

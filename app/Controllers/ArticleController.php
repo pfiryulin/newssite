@@ -7,6 +7,13 @@ use Smarty\Smarty;
 
 class ArticleController
 {
+    /**
+     * @param \Smarty\Smarty $smarty
+     * @param int            $id
+     *
+     * @throws \Smarty\Exception
+     * @return null
+     */
     public function index(Smarty $smarty, int $id)
     {
         $article = Articles::find($id);

@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * @param $data
+ *
+ * @return void
+ */
 function dump($data)
 {
     echo '<pre>';
