@@ -2,3 +2,4 @@
 /vendor
 /templates_c
 /db
+/core/Config/database.php

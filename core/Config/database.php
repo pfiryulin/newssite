@@ -3,8 +3,8 @@
  * Specify the connection parameters to the database
  */
 return [
-    'host' => 'db',
+    'host' => 'MySQL-8.4',
     'dbname' => 'abelohost',
-    'user' => 'admin',
-    'password' => 'admin',
+    'user' => 'root',
+    'password' => '',
 ];
