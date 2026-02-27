@@ -2,7 +2,6 @@
 
 namespace app\Controllers;
 
-use app\Action\CountPageAction;
 use app\Models\Articles;
 use app\Models\Category;
 use app\Services\GetArticlesService;
@@ -27,9 +26,9 @@ class CategoryController
 
         $category = Category::find($id);
 
-        $limit = 10;
+        $limit = 9;
 
-        $pagination = new PaginationService(Articles::class, 'category_id', $id, 10, $currenPage);
+        $pagination = new PaginationService(Articles::class, 'category_id', $id, $limit, $currenPage);
         $pagination = $pagination->handle();
         $offset = $pagination['offset'];
         $totalPages = $pagination['totalPages'];

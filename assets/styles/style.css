@@ -105,3 +105,15 @@ li.link.active>a{
 .similar_articles-title{
     padding: 10px 0;
 }
+.sort__nav{
+    margin-bottom: 15px;
+}
+
+.article-data{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.cls-1{fill:#fff;opacity:0;}
+.cls-2{fill:#231f20;}
