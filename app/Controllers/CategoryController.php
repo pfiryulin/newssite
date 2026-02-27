@@ -21,8 +21,9 @@ class CategoryController
     public function index(Smarty $smarty, int $id)
     {
         $currenPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $sort = isset($_GET['sort']) ? (int)$_GET['sort'] : "date";
+        $sort = isset($_GET['sort']) ? $_GET['sort'] : "created_at";
         $direction = (isset($_GET['direct']) && $_GET['direct'] == 'asc') ? 'desc' : 'asc';
+        $curentDirection = isset($_GET['direct']) ? $_GET['direct'] : 'desc';
 
         $category = Category::find($id);
 
@@ -33,10 +34,14 @@ class CategoryController
         $offset = $pagination['offset'];
         $totalPages = $pagination['totalPages'];
 
-        $articles = (new GetArticlesService())->getArticleByCategory($id, $limit, $offset);
+        $articles = (new GetArticlesService())->getArticleByCategory($id, $limit, $sort, $curentDirection, $offset);
         $smarty->assign('articles', $articles);
         $smarty->assign('totalPages', $totalPages);
         $smarty->assign('currenPage', $currenPage);
+        $smarty->assign('curentDirection', $curentDirection);
+        $smarty->assign('direction', $direction);
+        $smarty->assign('sort', $sort);
+
         $smarty->assign('category', $category);
 
         return $smarty->display('category.tpl');

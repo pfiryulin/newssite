@@ -5,9 +5,9 @@
     </div>
     <div class="sort__nav">
         <ul class="link__list">
-            <li class="link"><a href="?sortby=view&direct=asc">Количество просмотров</a></li>
-            <li class="link"><a href="?sortby=date&direct=asc">Дата публикации</a></li>
-            <li class="link"><a href="?sortby=title&direct=asc">Название</a></li>
+            <li class="link"><a href="?page=1&sortby=views&direct={$direction}">Количество просмотров</a></li>
+            <li class="link"><a href="?page=1&sortby=created_at&direct={$direction}">Дата публикации</a></li>
+            <li class="link"><a href="?page=1&sortby=title&direct={$direction}">Название</a></li>
         </ul>
     </div>
     <div class="article__list">
@@ -41,7 +41,7 @@
             <li class="link
                 {if $currenPage == $i}active{/if}
             ">
-                <a href="?page={$i}">{$i}</a>
+                <a href="?page={$i}&sort={$sort}&direct={$curentDirection}">{$i}</a>
             </li>
         {/for}
         <li>
