@@ -16,6 +16,8 @@ require_once __DIR__ . '/app/Models/Articles.php';
 require_once __DIR__ . '/app/Models/Category.php';
 require_once __DIR__ . '/app/Models/SimilarArticles.php';
 require_once __DIR__ . '/app/Services/GetArticlesService.php';
+require_once __DIR__ . '/app/Services/PaginationService.php';
+require_once __DIR__ . '/app/Action/CountPageAction.php';
 
 $smarty = new Smarty\Smarty();
 $smarty->setTemplateDir(__DIR__ . '/templates/');

@@ -3,6 +3,13 @@
     <div class="category__item-header">
         <div class="category__item-title">{$category['name']}</div>
     </div>
+    <div class="sort__nav">
+        <ul class="link__list">
+            <li class="link"><a href="?sortby=view&direct=asc">Количество просмотров</a></li>
+            <li class="link"><a href="?sortby=date&direct=asc">Дата публикации</a></li>
+            <li class="link"><a href="?sortby=title&direct=asc">Название</a></li>
+        </ul>
+    </div>
     <div class="article__list">
         {foreach $articles as $article}
             <div class="article__item current-category">
@@ -26,7 +33,7 @@
     </div>
 </div>
 <div class="pagination">
-    <ul>
+    <ul class="link__list">
         <li>
             <a href="?page=1">В начало</a>
         </li>
