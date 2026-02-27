@@ -3,6 +3,7 @@
 namespace app\Controllers;
 
 use app\Models\Articles;
+use app\Services\GetArticlesService;
 use Smarty\Smarty;
 
 class ArticleController
@@ -16,8 +17,9 @@ class ArticleController
      */
     public function index(Smarty $smarty, int $id)
     {
-        $article = Articles::find($id);
-        $smarty->assign('article', $article);
+        $data = (new GetArticlesService())->getArticleById($id);
+        $smarty->assign('article', $data['article']);
+        $smarty->assign('similarArticles', $data['similar_articles']);
         return $smarty->display('article.tpl');
     }
 }

@@ -4,6 +4,7 @@ namespace app\Services;
 
 use app\Models\Articles;
 use app\Models\Category;
+use app\Models\SimilarArticles;
 use core\Database\DatabaseConnect;
 
 class GetArticlesService
@@ -72,5 +73,31 @@ class GetArticlesService
         $data = $db->prepare("SELECT COUNT(*) FROM " . Articles::$table . " WHERE $column = ?");
         $data->execute([$value]);
         return $data->fetchColumn();
+    }
+
+    /**
+     * The method prepares the data for display on the article page
+     *
+     * @param int $article_id
+     * @param int $limit
+     *
+     * @throws \Exception
+     * @return array
+     */
+    public function getArticleById(int $article_id, int $limit = 3) : array
+    {
+        $db = DatabaseConnect::getInstance();
+        $article = Articles::find($article_id);
+
+        $similarArticles = $db->prepare("SELECT a.*
+                FROM " . Articles::$table . " AS a
+                JOIN " . SimilarArticles::$table . " AS sa ON a.id = sa.similar_article_id
+                WHERE sa.article_id = ?
+                LIMIT ?");
+        $similarArticles->execute([$article_id, $limit]);
+        return [
+            'article' => $article,
+            'similar_articles' => $similarArticles->fetchAll(),
+        ];
     }
 }

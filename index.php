@@ -14,6 +14,7 @@ require_once __DIR__ . '/app/Controllers/CategoryController.php';
 require_once __DIR__ . '/app/Controllers/ArticleController.php';
 require_once __DIR__ . '/app/Models/Articles.php';
 require_once __DIR__ . '/app/Models/Category.php';
+require_once __DIR__ . '/app/Models/SimilarArticles.php';
 require_once __DIR__ . '/app/Services/GetArticlesService.php';
 
 $smarty = new Smarty\Smarty();
@@ -23,5 +24,4 @@ $smarty->setCacheDir(__DIR__ . '/cache/');
 $smarty->setConfigDir(__DIR__ . '/configs/');
 
 Router::dispatch($smarty);
-echo "Helo world";
 

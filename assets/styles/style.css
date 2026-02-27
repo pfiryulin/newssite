@@ -97,3 +97,7 @@ li.link{
 li.link.active>a{
     font-weight: bold;
 }
+
+.similar_articles-title{
+    padding: 10px 0;
+}
