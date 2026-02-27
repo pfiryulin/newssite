@@ -50,11 +50,22 @@ class GetArticlesService
      *
      * @return array
      */
-    public function getArticleByCategory(int $category_id, $limit, $offset = 0) : array
+    public function getArticleByCategory(
+        int $category_id,
+        int $limit,
+        string $sort = 'created_at',
+        string $direction = 'desc',
+        int $offset = 0
+    ) : array
     {
+        $sortString = $sort . " " . $direction;
         $db = DatabaseConnect::getInstance();
-        $articles = $db->prepare("SELECT * FROM " . Articles::$table . " WHERE category_id = ? ORDER BY created_at DESC LIMIT ? OFFSET ?");
-        $articles->execute([$category_id, $limit, $offset]);
+        $articles = $db->prepare("SELECT * FROM " . Articles::$table . " WHERE category_id = :category_id ORDER BY " . $sortString ." LIMIT :limit OFFSET :offset");
+
+        $articles->bindParam(':category_id', $category_id);
+        $articles->bindParam(':limit', $limit);
+        $articles->bindParam(':offset', $offset);
+        $articles->execute();
 
         return $articles->fetchAll();
     }

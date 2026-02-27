@@ -3,42 +3,46 @@
     <div class="category__item-header">
         <div class="category__item-title">{$category['name']}</div>
     </div>
-    <div class="article__list">
-        {foreach $articles as $article}
-            <div class="article__item current-category">
-                <div class="article__item-img">
-                    <img src="{$article['img']}" alt="">
-                </div>
-                <div class="article-title">
-                    <a href="/article/{$article['id']}">{$article['title']}</a>
-                </div>
-                <div class="article-date">
-                    {$article['created_at']|date_format:"%b %e %Y"}
-                </div>
-                <div class="article-description">
-                    {$article['description']}
-                </div>
-                <div class="link">
-                    <a href="/article/{$article['id']}">Continue reading</a>
-                </div>
-            </div>
-        {/foreach}
+    <div class="sort__nav">
+        <ul class="link__list">
+            <li class="link {if $sort == 'views'}active{/if}">
+                <a href="?page=1&sort=views&direct={$direction}">
+                    {if $direction == 'desc'}
+                        Еще никто не видел
+                    {else}
+                        Самые популярные
+                    {/if}
+                </a>
+            </li>
+            <li class="link {if $sort == 'created_at'}active{/if}">
+                <a href="?page=1&sort=created_at&direct={$direction}">
+                    {if $direction == 'desc'}
+                        Проверенно временем
+                    {else}
+                        Самое свежее
+                    {/if}
+                </a>
+            </li>
+        </ul>
     </div>
+
+    {include file="article-list.tpl" articles=$articles}
+
 </div>
 <div class="pagination">
-    <ul>
+    <ul class="link__list">
         <li>
-            <a href="?page=1">В начало</a>
+            <a href="?page=1&sort={$sort}&direct={$curentDirection}">В начало</a>
         </li>
         {for $i=1 to $totalPages}
             <li class="link
                 {if $currenPage == $i}active{/if}
             ">
-                <a href="?page={$i}">{$i}</a>
+                <a href="?page={$i}&sort={$sort}&direct={$curentDirection}">{$i}</a>
             </li>
         {/for}
         <li>
-            <a href="?page={$totalPages}">В конец</a>
+            <a href="?page={$totalPages}&sort={$sort}&direct={$curentDirection}">В конец</a>
         </li>
 
     </ul>
